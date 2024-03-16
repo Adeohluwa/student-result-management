@@ -1,4 +1,6 @@
+
 # Student Result Management System
+![SRM](screenshot.png)
 
 This Student Result Management System is a web application designed to streamline the process of managing student information, recording results, and generating reports. Below is an extensive guide on how to use and understand the system.
 
