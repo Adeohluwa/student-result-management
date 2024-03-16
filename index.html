@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Result Management System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .animated {
+            animation-duration: 0.5s;
+            animation-fill-mode: both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fadeIn {
+            animation-name: fadeIn;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">Student Result Management System</h1>
+        <ul class="nav nav-tabs mb-3">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#studentResults">Student Results</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#studentInfo">Student Information</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#courseManagement">Course Management</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#resultEntry">Result Entry</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#reportGeneration">Report Generation</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#dataImportExport">Data Import/Export</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#resultUpload">Result Upload</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="studentResults">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="searchInput" placeholder="Search by name or roll number">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" id="searchBtn">Search</button>
+                    </div>
+                </div>
+                <table id="resultTable" class="table table-striped table-bordered animated fadeIn" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Roll Number</th>
+                            <th>Name</th>
+                            <th>Marks</th>
+                            <th>Grade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Student results will be dynamically added here -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="studentInfo">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Add New Student</h3>
+            <form id="addStudentForm">
+                <div class="form-group">
+                    <label for="rollNumber">Roll Number</label>
+                    <input type="text" class="form-control" id="rollNumber" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Student</button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h3>Student List</h3>
+            <table id="studentInfoTable" class="table table-striped table-bordered animated fadeIn" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Roll Number</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Student information will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+            <div class="tab-pane fade" id="courseManagement">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Add New Course</h3>
+            <form id="addCourseForm">
+                <div class="form-group">
+                    <label for="courseCode">Course Code</label>
+                    <input type="text" class="form-control" id="courseCode" required>
+                </div>
+                <div class="form-group">
+                    <label for="courseName">Course Name</label>
+                    <input type="text" class="form-control" id="courseName" required>
+                </div>
+                <div class="form-group">
+                    <label for="courseInstructor">Course Instructor</label>
+                    <input type="text" class="form-control" id="courseInstructor" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Course</button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h3>Course List</h3>
+            <table id="courseManagementTable" class="table table-striped table-bordered animated fadeIn" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Course Code</th>
+                        <th>Course Name</th>
+                        <th>Course Instructor</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Course information will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+
+
+        
+    </div>
+</div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Dummy student data
+            const studentData = [
+                { rollNumber: "001", name: "John Doe", marks: 85, grade: "A" },
+                { rollNumber: "002", name: "Jane Smith", marks: 92, grade: "A+" },
+                { rollNumber: "003", name: "Bob Johnson", marks: 78, grade: "B" },
+                { rollNumber: "004", name: "Alice Williams", marks: 69, grade: "C" },
+                { rollNumber: "005", name: "Tom Davis", marks: 81, grade: "B+" },
+                // Add more student data as needed
+            ];
+
+            // Initialize DataTable
+            const table = $("#resultTable").DataTable({
+                data: studentData,
+                columns: [
+                    { data: "rollNumber" },
+                    { data: "name" },
+                    { data: "marks" },
+                    { data: "grade" }
+                ],
+                pageLength: 5,
+                lengthChange: false,
+                searching: false,
+                info: false
+            });
+
+            // Search functionality
+            $("#searchBtn").click(function() {
+                const searchTerm = $("#searchInput").val().toLowerCase();
+                table.search(searchTerm).draw();
+            });
+        });
+    </script>
+</body>
+</html>
