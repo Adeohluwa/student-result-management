@@ -137,3 +137,58 @@ def get_all_result_disputes():
         all_disputes.append(dispute_data)
 
     return all_disputes
+
+
+# Results
+
+def add_result(result_data):
+    doc_ref = db.collection('Results').document()
+    result_data['id'] = doc_ref.id
+    doc_ref.set(result_data)
+    return result_data
+
+def update_result(result_id, updated_data):
+    doc_ref = db.collection('Results').document(result_id)
+    doc_ref.update(updated_data)
+    return doc_ref.get().to_dict()
+
+def delete_result(result_id):
+    doc_ref = db.collection('Results').document(result_id)
+    doc_ref.delete()
+
+def get_result(result_id):
+    doc_ref = db.collection('Results').document(result_id)
+    return doc_ref.get().to_dict()
+
+def get_all_results():
+    results = db.collection('Results').stream()
+    all_results = []
+
+    for result in results:
+        result_data = result.to_dict()
+        result_data['id'] = result.id
+        all_results.append(result_data)
+
+    return all_results
+
+def get_results_by_student_id(student_id):
+    results = db.collection('Results').where('student_id', '==', student_id).stream()
+    student_results = []
+
+    for result in results:
+        result_data = result.to_dict()
+        result_data['id'] = result.id
+        student_results.append(result_data)
+
+    return student_results
+
+def get_results_by_course_id(course_id):
+    results = db.collection('Results').where('course_id', '==', course_id).stream()
+    course_results = []
+
+    for result in results:
+        result_data = result.to_dict()
+        result_data['id'] = result.id
+        course_results.append(result_data)
+
+    return course_results
