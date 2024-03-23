@@ -59,7 +59,15 @@ These dependencies are loaded via CDN links for ease of integration.
 The backend of this system is developed using 
 - Python 3
 - Flask
-- Firebase.
+- Firebase
+
+## Instructions
+```
+$ pip install -r requirements.txt
+```
+```
+$ python run.py
+```
 
 ## Credits
 
