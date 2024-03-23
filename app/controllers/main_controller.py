@@ -4,7 +4,7 @@ from app import app
 @app.route('/')
 def index():
     # Render the 'base.html' template
-    return render_template('base.html')
+    return render_template('login.html')
 
 @app.route('/student_results')
 def student_results():
