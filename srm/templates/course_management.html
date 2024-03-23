@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block nav_items %}
+<li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#studentResults">Student Results</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#studentInfo">Student Information</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#course_management">Course Management</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="/lecturer_management">Lecturer Management</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#dispute">Result Dispute</a>
+</li>
+{% endblock %}
+
+{% block content %}
+<div class="tab-pane fade show active" id="courseManagement">
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Add New Course</h3>
+      <form id="addCourseForm">
+        <div class="form-group">
+          <label for="courseCode">Course Code</label>
+          <input type="text" class="form-control" id="courseCode" required>
+        </div>
+        <div class="form-group">
+          <label for="courseName">Course Name</label>
+          <input type="text" class="form-control" id="courseName" required>
+        </div>
+        <div class="form-group">
+          <label for="courseInstructor">Course Instructor</label>
+          <input type="text" class="form-control" id="courseInstructor" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Course</button>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <h3>Course List</h3>
+      <table id="courseManagementTable" class="table table-striped table-bordered animated fadeIn" style="width:100%">
+        <thead>
+          <tr>
+            <th>Course Code</th>
+            <th>Course Name</th>
+            <th>Course Instructor</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for course in courses %}
+          <tr>
+            <td>{{ course.courseCode }}</td>
+            <td>{{ course.courseName }}</td>
+            <td>{{ course.courseInstructor }}</td>
+            <td>
+              <button class="btn btn-primary btn-sm edit-course" data-course-id="{{ course.id }}">Edit</button>
+              <button class="btn btn-danger btn-sm delete-course" data-course-id="{{ course.id }}">Delete</button>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
