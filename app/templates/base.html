@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Result Management System</title>
+
+    {% with messages = get_flashed_messages() %} {% if messages %} <ul class=flashes> {% for message in messages %} <li>{{ message }}</li> {% endfor %} </ul> {% endif %} {% endwith %} {% block body %}{% endblock %}
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
     <style>
@@ -36,21 +39,8 @@
     <div class="container">
         <h1 class="text-center mb-4">Student Result Management System</h1>
         <ul class="nav nav-tabs mb-3">
-            <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#studentResults">Student Results</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#studentInfo">Student Information</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#courseManagement">Course Management</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#lecturerManagement">Lecturer Management</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#resultDispute">Result Dispute</a>
-            </li>
+            {% block nav_items %}
+            {% endblock %}
         </ul>
 
         {% block content %}
@@ -63,7 +53,7 @@
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-    
+
     </script>
 </body>
 </html>
