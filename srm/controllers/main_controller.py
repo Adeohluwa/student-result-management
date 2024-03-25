@@ -14,6 +14,14 @@ courses = get_all_courses()
 students = get_all_students()
 results = get_all_results()
 
+studentEmail="student@gmail.com"
+studentPassword="student"
+
+
+lecturerEmail="lecturer@gmail.com"
+lecturerPassword="lecturer"
+
+
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -24,11 +32,40 @@ def index():
             email = request.form['loginEmail']
             password = request.form['loginPassword']
             # return "Yes"
+
+
+            if email == studentEmail and password == studentPassword:
+                try:
+                    user = sign_in(email, password)
+                    flash('Login successful!', 'success')
+                    # Redirect to the desired page after successful login
+                    return render_template("student_dashboard.html")
+                except Exception as e:
+                    error_message = str(e)
+                    flash(f'Login failed: {error_message}', 'danger')
+
+ 
+
+            
+
+
+            if email == lecturerEmail and password == lecturerPassword:
+                try:
+                    user = sign_in(email, password)
+                    flash('Login successful!', 'success')
+                    # Redirect to the desired page after successful login
+                    return render_template("lecturer_dashboard.html")
+                except Exception as e:
+                    error_message = str(e)
+                    flash(f'Login failed: {error_message}', 'danger')
+
+
+
             try:
                 user = sign_in(email, password)
                 flash('Login successful!', 'success')
                 # Redirect to the desired page after successful login
-                return redirect(url_for('courses'))
+                return redirect(url_for('lecturer'))
             except Exception as e:
                 error_message = str(e)
                 flash(f'Login failed: {error_message}', 'danger')
