@@ -1,4 +1,4 @@
-from ..models.db import auth, get_all_students, get_all_lecturers, get_all_courses, get_all_results, get_all_result_disputes
+from ..models.db import auth, get_all_students, get_all_lecturers, get_all_courses, get_all_results, get_all_disputes
 from .auth_lib import sign_up, sign_in
 from flask import Flask, render_template, request, redirect, url_for, flash
 from srm import app
@@ -7,7 +7,7 @@ from srm import app
 # app = Flask(__name__)
 app.secret_key = 'a6d55b52545bc8146bc03cf61902f520'
 
-result_disputes = get_all_result_disputes()
+result_disputes = get_all_disputes()
 lecturers = get_all_lecturers()
 courses = get_all_courses()
 students = get_all_students()
@@ -137,28 +137,28 @@ def index():
 
 
 
-@app.route('/student_results')
-def student_results():
-    return render_template('student_results.html', student_results=results)
+# @app.route('/student_results')
+# def student_results():
+#     return render_template('student_results.html', student_results=results)
 
 
-@app.route('/student_information')
-def student_information():
-    return render_template('student_information.html', students=students)
+# @app.route('/student_information')
+# def student_information():
+#     return render_template('student_information.html', students=students)
 
 
-@app.route('/course_management')
-def course_management():
-    return render_template('course_management.html', courses=courses)
-
-
-
-@app.route('/lecturer_management')
-def lecturer_management():
-    return render_template('lecturer_management.html', lecturers=lecturers)
+# @app.route('/course_management')
+# def course_management():
+#     return render_template('course_management.html', courses=courses)
 
 
 
-@app.route('/dispute')
-def result_dispute():
-    return render_template('result_dispute.html', result_disputes=result_disputes)
+# @app.route('/lecturer_management')
+# def lecturer_management():
+#     return render_template('lecturer_management.html', lecturers=lecturers)
+
+
+
+# @app.route('/dispute')
+# def result_dispute():
+#     return render_template('result_dispute.html', result_disputes=result_disputes)
