@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Result Management System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .animated {
+            animation-duration: 0.5s;
+            animation-fill-mode: both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fadeIn {
+            animation-name: fadeIn;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4"> Student Result Management System</h1>
+        <ul class="nav nav-tabs mb-3">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#studentSide">Student Side</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link fade" data-toggle="tab" href="#lecturerSide">Lecturer Side</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="studentSide">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="text-center mb-4">Semester Results</h2>
+                        <table id="semesterResultTable" class="table table-striped table-bordered animated fadeIn" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Semester</th>
+                                    <th>Course Code</th>
+                                    <th>Course Title</th>
+                                    <th>Score</th>
+                                    <th>Grade</th>
+                                    <th>Credit Unit</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>CSC101</td>
+                                    <td>Introduction to Computer Science</td>
+                                    <td>85</td>
+                                    <td>A</td>
+                                    <td>3</td>
+                                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#courseResultModal">View Result</button></td>
+                                </tr>
+                                <!-- More semester result information will be dynamically added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Course Result Modal -->
+                <div class="modal fade" id="courseResultModal" tabindex="-1" role="dialog" aria-labelledby="courseResultModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="courseResultModalLabel">Course Result Details</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p><strong>Course Code:</strong> <span id="courseCode">CSC101</span></p>
+                                <p><strong>Course Title:</strong> <span id="courseTitle">Introduction to Computer Science</span></p>
+                                <p><strong>Score:</strong> <span id="score">85</span></p>
+                                <p><strong>Grade:</strong> <span id="grade">A</span></p>
+                                <p><strong>Credit Unit:</strong> <span id="creditUnit">3</span></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-toggle="tab" data-target="#resultDispute">Dispute Result</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Result Dispute Form -->
+                <div class="tab-pane fade" id="resultDispute">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="text-center mb-4">Result Dispute Form</h2>
+                            <form id="resultDisputeForm">
+                                <div class="form-group">
+                                    <label for="courseCode">Course Code</label>
+                                    <input type="text" class="form-control" id="courseCode" value="CSC101" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="score">Score</label>
+                                    <input type="number" class="form-control" id="score" value="85" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="grade">Grade</label>
+                                    <input type="text" class="form-control" id="grade" value="A" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="reason">Reason for Dispute</label>
+                                    <textarea class="form-control" id="reason" rows="3"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit Dispute</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status Screen -->
+                <div class="tab-pane fade" id="statusScreen">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="text-center mb-4">Status Screen</h2>
+                            <table id="statusTable" class="table table-striped table-bordered animated fadeIn" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Course Code</th>
+                                        <th>Status</th>
+                                        <th>Date Submitted</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>CSC101</td>
+                                        <td>Pending Review</td>
+                                        <td>February 20, 2023</td>
+                                    </tr>
+                                    <!-- More status information will be dynamically added here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="lecturerSide">
+                <!-- Lecturer Dashboard -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="text-center mb-4">Lecturer Dashboard</h2>
+                        <table id="courseTable" class="table table-striped table-bordered animated fadeIn" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Course Code</th>
+                                    <th>Course Title</th>
+                                    <th>Level</th>
+                                    <th>Semester</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>CSC101</td>
+                                    <td>Introduction to Computer Science</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td><button type="button" class="btn btn-primary" data-toggle="tab" data-target="#uploadResult">Upload Result</button></td>
+                                </tr>
+                                <!-- More course information will be dynamically added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- List of Courses Assigned -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="text-center mb-4">Courses Assigned</h2>
+                        <table id="coursesAssignedTable" class="table table-striped table-bordered animated fadeIn" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Course Code</th>
+                                    <th>Course Title</th>
+                                    <th>Level</th>
+                                    <th>Semester</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>CSC101</td>
+                                    <td>Introduction to Computer Science</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td><button type="button" class="btn btn-primary" data-toggle="tab" data-target="#uploadResult">Upload Result</button></td>
+                                </tr>
+                                <!-- More course information will be dynamically added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Upload Result Screen -->
+                <div class="tab-pane fade" id="uploadResult">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="text-center mb-4">Upload Result</h2>
+                            <table id="studentTable" class="table table-striped table-bordered animated fadeIn" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Student ID</th>
+                                        <th>Student Name</th>
+                                        <th>Score</th>
+                                        <th>Grade</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>123456789</td>
+                                        <td>John Doe</td>
+                                        <td><input type="number" class="form-control" id="score" value=""></td>
+                                        <td><input type="text" class="form-control" id="grade" value=""></td>
+                                        <td><button type="button" class="btn btn-primary">Save</button></td>
+                                    </tr>
+                                    <!-- More student information will be dynamically added here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Your JavaScript code here
+        });
+    </script>
+</body>
+</html>
