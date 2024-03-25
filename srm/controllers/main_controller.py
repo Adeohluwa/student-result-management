@@ -65,7 +65,7 @@ def index():
                 user = sign_in(email, password)
                 flash('Login successful!', 'success')
                 # Redirect to the desired page after successful login
-                return redirect(url_for('lecturer'))
+                return redirect(url_for('courses'))
             except Exception as e:
                 error_message = str(e)
                 flash(f'Login failed: {error_message}', 'danger')
