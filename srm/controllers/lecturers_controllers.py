@@ -31,8 +31,8 @@ def add_lecturer_route():
 #     flash('Lecturer updated successfully!', 'success')
 #     return redirect(url_for('lecturers.lecturers'))
 
-# @lecturers_bp.route('/delete_lecturer/<string:lecturer_id>')
-# def delete_lecturer_route(lecturer_id):
-#     delete_lecturer(lecturer_id)
-#     flash('Lecturer deleted successfully!', 'success')
-#     return redirect(url_for('lecturers.lecturers'))
+@app.route('/delete_lecturer/<string:lecturer_id>', methods=['POST'])
+def delete_lecturer_route(lecturer_id):
+    delete_lecturer(lecturer_id)
+    flash('Lecturer deleted successfully!', 'success')
+    return redirect(url_for('lecturers'))

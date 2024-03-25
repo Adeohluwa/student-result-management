@@ -30,10 +30,10 @@ def update_course_route(course_id):
     }
     update_course(course_id, updated_data)
     flash('Course updated successfully!', 'success')
-    return redirect(url_for('courses.courses'))
+    return redirect(url_for('courses'))
 
-@app.route('/delete_course/<string:course_id>')
+@app.route('/delete_course/<string:course_id>',methods=['POST'])
 def delete_course_route(course_id):
     delete_course(course_id)
     flash('Course deleted successfully!', 'success')
-    return redirect(url_for('courses.courses'))
+    return redirect(url_for('courses'))

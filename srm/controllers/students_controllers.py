@@ -31,8 +31,8 @@ def add_student_route():
 #     flash('Student updated successfully!', 'success')
 #     return redirect(url_for('students.students'))
 
-# @students_bp.route('/delete_student/<string:student_id>')
-# def delete_student_route(student_id):
-#     delete_student(student_id)
-#     flash('Student deleted successfully!', 'success')
-#     return redirect(url_for('students.students'))
+@app.route('/delete_student/<string:student_id>', methods=['POST'])
+def delete_student_route(student_id):
+    delete_student(student_id)
+    flash('Student deleted successfully!', 'success')
+    return redirect(url_for('students'))

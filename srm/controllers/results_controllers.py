@@ -7,7 +7,7 @@ from srm import app
 @app.route('/results')
 def results():
     results = get_all_results()
-    return render_template('results/results_management.html', results=results)
+    return render_template('results_management.html', results=results)
 
 @app.route('/add_result', methods=['POST'])
 def add_result_route():
@@ -33,8 +33,8 @@ def add_result_route():
 #     flash('Result updated successfully!', 'success')
 #     return redirect(url_for('results.results'))
 
-# @results_bp.route('/delete_result/<string:result_id>')
-# def delete_result_route(result_id):
-#     delete_result(result_id)
-#     flash('Result deleted successfully!', 'success')
-#     return redirect(url_for('results.results'))
+@app.route('/delete_result/<string:result_id>')
+def delete_result_route(result_id):
+    delete_result(result_id)
+    flash('Result deleted successfully!', 'success')
+    return redirect(url_for('results.results'))
