@@ -2,8 +2,8 @@ import requests
 import json
 from urllib.parse import urljoin
 
-API_KEY = "AIzaSyCErY0uhX5_jqVhD5xg7FLXj27KUvufyn4"
-PROJECT_ID = "babcock-6b68d"
+API_KEY = "AIzaSyD4-EwXggo6N4X_E1TmIwiROTrlu8Sh2WQ"
+PROJECT_ID = "student-result-managemen-26370"
 BASE_URL = f"https://identitytoolkit.googleapis.com/v1/accounts:"
 
 
