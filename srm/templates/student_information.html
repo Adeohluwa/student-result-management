@@ -1,15 +1,34 @@
 {% extends 'base.html' %}
 
+
+{% block nav_items %}
+<li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#studentResults">Student Results</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#studentInfo">Student Information</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#course_management">Course Management</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="lecturers">Lecturer Management</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#dispute">Result Dispute</a>
+</li>
+{% endblock %}
+
 {% block content %}
-<div class="tab-pane fade" id="studentInfo">
+<div class="tab-pane fade show active" id="studentInfo">
   <div class="row">
     <div class="col-md-6">
       <h3>Add New Student</h3>
-      <form id="addStudentForm">
+      <form id="addStudentForm" action="{{ url_for('add_student_route') }}" method="POST">
         <div class="form-group">
           <label for="rollNumber">Roll Number</label>
           <input type="text" class="form-control" id="rollNumber" required>
-        </div>
+          </div>
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" class="form-control" id="name" required>

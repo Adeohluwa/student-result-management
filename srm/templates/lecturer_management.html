@@ -1,22 +1,42 @@
 {% extends 'base.html' %}
 
+{% block nav_items %}
+<li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#studentResults">Student Results</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#studentInfo">Student Information</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#course_management">Course Management</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="/lecturer_management">Lecturer Management</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#dispute">Result Dispute</a>
+</li>
+{% endblock %}
+
+
+
 {% block content %}
-<div class="tab-pane fade" id="lecturerManagement">
+<div class="tab-pane fade show active" id="lecturerManagement">
   <div class="row">
     <div class="col-md-6">
       <h3>Add New Lecturer</h3>
-      <form id="addLecturerForm">
+      <form id="addLecturerForm" action="{{ url_for('add_lecturer_route') }}" method="POST">
         <div class="form-group">
           <label for="lecturerId">Lecturer ID</label>
-          <input type="text" class="form-control" id="lecturerId" required>
+          <input type="text" class="form-control" name="lecturerId" id="lecturerId" required>
         </div>
         <div class="form-group">
           <label for="lecturerName">Lecturer Name</label>
-          <input type="text" class="form-control" id="lecturerName" required>
+          <input type="text" class="form-control" name="lecturerName" id="lecturerName" required>
         </div>
         <div class="form-group">
           <label for="lecturerEmail">Lecturer Email</label>
-          <input type="email" class="form-control" id="lecturerEmail" required>
+          <input type="email" class="form-control" name="lecturerEmail" id="lecturerEmail" required>
         </div>
         <button type="submit" class="btn btn-primary">Add Lecturer</button>
       </form>
