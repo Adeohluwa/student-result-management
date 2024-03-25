@@ -2,6 +2,7 @@ from ..models.db import auth, get_all_students, get_all_lecturers, get_all_cours
 from .auth_lib import sign_up, sign_in
 from flask import Flask, render_template, request, redirect, url_for, flash
 from srm import app
+from .courses_controllers import courses
 
 
 # app = Flask(__name__)
@@ -27,7 +28,7 @@ def index():
                 user = sign_in(email, password)
                 flash('Login successful!', 'success')
                 # Redirect to the desired page after successful login
-                return redirect(url_for('index'))
+                return redirect(url_for('courses'))
             except Exception as e:
                 error_message = str(e)
                 flash(f'Login failed: {error_message}', 'danger')
