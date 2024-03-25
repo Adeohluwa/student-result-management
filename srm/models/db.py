@@ -108,26 +108,26 @@ def get_all_lecturers():
 
 # Result Disputes
 
-def add_result_dispute(dispute_data):
+def add_dispute(dispute_data):
     doc_ref = db.collection('Disputes').document()
     dispute_data['id'] = doc_ref.id
     doc_ref.set(dispute_data)
     return dispute_data
 
-def update_result_dispute(dispute_id, updated_data):
+def update_dispute(dispute_id, updated_data):
     doc_ref = db.collection('Disputes').document(dispute_id)
     doc_ref.update(updated_data)
     return doc_ref.get().to_dict()
 
-def delete_result_dispute(dispute_id):
+def delete_dispute(dispute_id):
     doc_ref = db.collection('Disputes').document(dispute_id)
     doc_ref.delete()
 
-def get_result_dispute(dispute_id):
+def get_dispute(dispute_id):
     doc_ref = db.collection('Disputes').document(dispute_id)
     return doc_ref.get().to_dict()
 
-def get_all_result_disputes():
+def get_all_disputes():
     disputes = db.collection('Disputes').stream()
     all_disputes = []
 
