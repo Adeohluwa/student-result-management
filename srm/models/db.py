@@ -31,6 +31,10 @@ def get_student(student_id):
     doc_ref = db.collection('Students').document(student_id)
     return doc_ref.get().to_dict()
 
+def get_student_courses(student_id):
+    doc_ref = db.collection('Students').document(student_id)
+    return doc_ref.get().to_dict()
+
 def get_all_students():
     students = db.collection('Students').stream()
     all_students = []
@@ -58,6 +62,7 @@ def update_course(course_id, updated_data):
 def delete_course(course_id):
     doc_ref = db.collection('Courses').document(course_id)
     doc_ref.delete()
+    return course_id
 
 def get_course(course_id):
     doc_ref = db.collection('Courses').document(course_id)
@@ -90,8 +95,13 @@ def update_lecturer(lecturer_id, updated_data):
 def delete_lecturer(lecturer_id):
     doc_ref = db.collection('Lecturers').document(lecturer_id)
     doc_ref.delete()
+    return lecturer_id
 
 def get_lecturer(lecturer_id):
+    doc_ref = db.collection('Lecturers').document(lecturer_id)
+    return doc_ref.get().to_dict()
+
+def get_lecturer_courses(lecturer_id):
     doc_ref = db.collection('Lecturers').document(lecturer_id)
     return doc_ref.get().to_dict()
 
