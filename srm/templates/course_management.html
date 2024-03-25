@@ -61,10 +61,9 @@
                 <button class="btn btn-primary btn-sm edit-course" type="submit">Edit</button>
               </form>
 
-              <form method="POST" action="{{ url_for('delete_course_route', course_id=course.courseCode) }}" class="d-inline">
-                <input type="hidden" name="_method" value="DELETE">
-                <button class="btn btn-danger btn-sm delete-course" type="submit">Delete</button>
-              </form>
+                <!-- <input type="hidden" name="_method" value="DELETE"> -->
+                <button onclick="deleteCourse('{{ course.id }}')" class="btn btn-danger btn-sm delete-course">Delete</button>
+
 
             </td>
           </tr>
@@ -74,4 +73,20 @@
     </div>
   </div>
 </div>
+
+
+<script>
+      function deleteCourse(course_id) {
+        axios.post(`delete_course/${course_id}`)
+        .then(res => {
+          console.log("Successful!");
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
+    }
+</script>
+
 {% endblock %}
+

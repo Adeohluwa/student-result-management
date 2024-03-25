@@ -59,7 +59,7 @@
             <td>{{ student.email }}</td>
             <td>
               <button class="btn btn-primary btn-sm edit-student" data-student-id="{{ student.id }}">Edit</button>
-              <button class="btn btn-danger btn-sm delete-student" data-student-id="{{ student.id }}">Delete</button>
+              <button onclick="deleteStudent('{{ student.id }}')" class="btn btn-danger btn-sm delete-student" data-student-id="{{ student.id }}">Delete</button>
             </td>
           </tr>
           {% endfor %}
@@ -68,4 +68,20 @@
     </div>
   </div>
 </div>
+
+
+<script>
+      function deleteStudent(sid) {
+        axios.post(`delete_student/${sid}`)
+        .then(res => {
+          console.log("Successful!");
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
+    }
+</script>
+
+
 {% endblock %}

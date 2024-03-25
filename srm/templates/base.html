@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -52,8 +53,24 @@
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
 
+      function post(path,data) {
+
+        if course_id {
+            axios.post(path,data)
+            .then(res => {
+              console.log("Successful!");
+            })
+            .catch(error => {
+              console.log(error);
+            });
+
+        }
+
+
+        }
     </script>
 </body>
 </html>
